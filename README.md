@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# langton-sphere-sim
-Multi-ant Langton simulator with fast NumPy core and CLI controls. Explore torus, Klein, projective, or folded-   sphere surfaces, tune trail lifetimes, and batch thousands of updates into colour-coded ASCII or Matplotlib runs—   exportable straight to GIF/MP4 for high-speed visual experiments.
-=======
 # Langton Ant Simulator
 
 A multi-agent Langton ant playground that supports torus, Klein bottle, and projective plane surfaces. The engine powers both a terminal-based renderer and an optional Matplotlib animation backend.
@@ -67,4 +63,3 @@ pytest --maxfail=1
 ```
 
 Refer to `AGENTS.md` for contributor workflow, coding standards, and testing expectations.
->>>>>>> c05250d (Initial import of Langton ant simulator)
