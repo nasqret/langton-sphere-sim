@@ -53,6 +53,117 @@ Tips:
 - Combine `--steps-per-frame` with a small `--interval` (or `0`) to process thousands of steps while sampling only key frames.
 - Keep one terminal on the ASCII backend while another renders exports for faster iteration.
 
+## Example Commands
+
+Run the CLI in headless mode (`MPLBACKEND=Agg` + `--no-show`) to crunch 100 000 steps quickly, saving only every 100th frame.
+
+```bash
+MPLBACKEND=Agg ant-sim --backend mpl --width 200 --height 200 \
+      --steps 100000 --steps-per-frame 100 --interval 0 --topology projective \
+      --trail-lifetime 5 --no-show \
+      --ant 60,60,north,green \
+      --ant 120,60,north,red \
+      --ant 60,120,north,blue \
+      --ant 120,120,north,cyan \
+      --save-path runs/ants_proj.gif --save-format gif --save-fps 30
+```
+Projective plane GIF—edges glue with reversed orientation, so ants “jump” and mirror as they cross seams.
+
+```bash
+MPLBACKEND=Agg ant-sim --backend mpl --width 200 --height 200 \
+      --steps 100000 --steps-per-frame 100 --interval 0 --topology sphere_diag \
+      --trail-lifetime 5 --no-show \
+      --ant 60,60,north,green \
+      --ant 120,60,north,red \
+      --ant 60,120,north,blue \
+      --ant 120,120,north,cyan \
+      --save-path runs/ants_spher.gif --save-format gif --save-fps 30
+```
+Folded-sphere digon GIF—adjacent edges funnel ants toward the two poles while the overlay tracks step counts.
+
+```bash
+MPLBACKEND=Agg ant-sim --backend mpl --width 200 --height 200 \
+      --steps 100000 --steps-per-frame 100 --interval 0 --topology torus \
+      --trail-lifetime 5 --no-show \
+      --ant 60,60,north,green \
+      --ant 120,60,north,red \
+      --ant 60,120,north,blue \
+      --ant 120,120,north,cyan \
+      --save-path runs/ants_tor.gif --save-format gif --save-fps 10
+```
+Classic torus GIF, slowed to 10 fps so highway structures are easy to inspect.
+
+```bash
+MPLBACKEND=Agg ant-sim --backend mpl --width 200 --height 200 \
+      --steps 100000 --steps-per-frame 100 --interval 0 --topology torus \
+      --trail-lifetime 5 --no-show \
+      --ant 60,60,north,green \
+      --ant 120,60,north,red \
+      --ant 60,120,north,blue \
+      --ant 120,120,north,cyan \
+      --save-path runs/ants_tor.mp4 --save-format mp4 --save-fps 30
+```
+Same torus scenario, exported to MP4—requires FFmpeg and yields a smoother video.
+
+```bash
+MPLBACKEND=Agg ant-sim --backend mpl --width 200 --height 200 \
+      --steps 100000 --steps-per-frame 100 --interval 0 --topology klein \
+      --trail-lifetime 5 --no-show \
+      --ant 60,60,north,green \
+      --ant 120,60,north,red \
+      --ant 60,120,north,blue \
+      --ant 120,120,north,cyan \
+      --save-path runs/ants_klein.mp4 --save-format mp4 --save-fps 30
+```
+Klein bottle MP4—one axis mirrors, so ants flip orientation at every seam crossing.
+
+```bash
+MPLBACKEND=Agg ant-sim --backend mpl --width 200 --height 200 \
+      --steps 100000 --steps-per-frame 100 --interval 0 --topology projective \
+      --trail-lifetime 5 --no-show \
+      --ant 60,60,north,green \
+      --ant 120,60,north,red \
+      --ant 60,120,north,blue \
+      --ant 120,120,north,cyan \
+      --save-path runs/ants_proj.mp4 --save-format mp4 --save-fps 30
+```
+Projective plane, now rendered at 30 fps for sharing or longer experiments.
+
+```bash
+MPLBACKEND=Agg ant-sim --backend mpl --width 200 --height 200 \
+      --steps 100000 --steps-per-frame 100 --interval 0 --topology sphere_diag \
+      --trail-lifetime 5 --no-show \
+      --ant 60,60,north,green \
+      --ant 120,60,north,red \
+      --ant 60,120,north,blue \
+      --ant 120,120,north,cyan \
+      --save-path runs/ants_spher.mp4 --save-format mp4 --save-fps 30
+```
+Folded-sphere digon MP4—adjacent seams act as a double cone while the annotation tracks progress.
+
+### Smaller set-ups and ASCII runs
+
+```bash
+ant-sim --width 60 --height 60 --steps 5000 --interval 0.02 --topology torus \
+        --ant 30,30,north,magenta
+```
+Terminal-only (ASCII) run with a single ant; great for quick sanity checks.
+
+```bash
+ant-sim --width 80 --height 40 --steps 8000 --interval 0 --topology klein \
+        --ant 20,10,north,yellow --ant 60,30,east,cyan --no-clear
+```
+Three ants on a rectangular Klein bottle in the terminal; `--no-clear` lets you watch the path build up.
+
+```bash
+MPLBACKEND=Agg ant-sim --backend mpl --width 120 --height 120 \
+      --steps 20000 --steps-per-frame 20 --interval 0 --topology projective \
+      --trail-lifetime 10 --no-show \
+      --ant 40,40,north,orange --ant 80,80,west,purple \
+      --save-path runs/projective_small.gif --save-format gif --save-fps 24
+```
+Smaller projective-plane GIF with just two ants; the higher trail lifetime keeps crossings visible.
+
 ## Development
 
 Lint and tests:
