@@ -1,0 +1,28 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+
+# Packaging / build artifacts
+dist/
+build/
+*.egg-info/
+
+# Logs and coverage
+*.log
+*.coverage
+.coverage.*
+htmlcov/
+
+# IDE / editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project-specific artifacts
+runs/
